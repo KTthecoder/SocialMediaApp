@@ -1,11 +1,7 @@
 from .models import *
 from rest_framework import serializers
-from django.contrib.auth.models import User
 from accountApp.serializers import *
-from django.db.models import Count
-from rest_framework.fields import CurrentUserDefault
 from profileApp.models import *
-from django.contrib.auth import get_user_model
 from drf_extra_fields.fields import Base64ImageField
 
 class PostSubCommentsSerializer(serializers.ModelSerializer):
@@ -52,7 +48,6 @@ class PostImagesSerializer(serializers.ModelSerializer):
         return PostImagesModel.objects.create(post=post, image=image)
 
 class PostSerializer(serializers.ModelSerializer):
-    # images = PostImagesSerializer(read_only = True, many = True)
     image = serializers.SerializerMethodField('get_image')
     userName = serializers.SerializerMethodField('get_user_name')
     userImage = serializers.SerializerMethodField('get_user_image')
@@ -94,7 +89,6 @@ class PostSerializer(serializers.ModelSerializer):
         
 
 class PostSmallSerializer(serializers.ModelSerializer):
-    # userModel = serializers.SerializerMethodField('get_user')
     liked = serializers.SerializerMethodField('is_liked')
     image = serializers.SerializerMethodField('get_image')
 
@@ -113,11 +107,6 @@ class PostSmallSerializer(serializers.ModelSerializer):
             return 'Yes'
         except: 
             return 'No'
-
-    # def get_user(self, post):
-    #     image = PostImagesModel.objects.get(post = post.id)
-    #     imageSerializer = PostImagesSerializer(image)
-    #     return imageSerializer.data
 
 class PostCreateSerializer(serializers.ModelSerializer):
     class Meta:

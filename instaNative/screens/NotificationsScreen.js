@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, SafeAreaView, Dimensions, ScrollView, Image } from 'react-native'
+import { View, Text, TouchableOpacity, SafeAreaView, Dimensions, ScrollView } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -19,22 +19,17 @@ const NotificationsScreen = () => {
                 <Text className='text-white text-xl ml-2' style={{fontFamily: 'Montserrat-SemiBold'}}>Notifications</Text>
             </View>
             <ScrollView className='flex-1 w-screen pt-2' contentContainerStyle={{alignItems: 'center', paddingBottom: 100}} showsVerticalScrollIndicator={false}>
-
                 <Text className='text-gray-300 text-xl justify-start mb-6 mt-1' style={{fontFamily: 'Montserrat-SemiBold', width: width * 0.94}}>Today</Text>
-
                 <NotificationBlock type={'comment'} />
                 <NotificationBlock type={'post'} />
                 <NotificationBlock type={'comment'} />
                 <NotificationBlock type={'comment'} />
                 <NotificationBlock type={'post'} />
                 <NotificationBlock type={'post'} />
-
                 <Text className='text-gray-300 text-xl justify-start mb-6 mt-3' style={{fontFamily: 'Montserrat-SemiBold', width: width * 0.94}}>This Month</Text>
-                
                 <NotificationBlock type={'post'} />
                 <NotificationBlock type={'comment'} />
                 <NotificationBlock type={'post'} />
-
             </ScrollView>
         </SafeAreaView>
     )

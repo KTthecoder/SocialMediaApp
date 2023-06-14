@@ -13,7 +13,6 @@ const PostBlockComment = ({title, likes, username, subComments}) => {
             <View className='flex-row items-center'>
                 <Text className='text-white text-sm' style={{fontFamily: 'Montserrat-SemiBold'}}>{username && username}</Text>
                 <Text className='text-white text-xs pl-2' style={{fontFamily: 'Montserrat-Regular'}}>{likes && likes} likes</Text>
-                {/* <Text className='text-white pl-2' style={{fontFamily: 'Montserrat-Regular', fontSize: 13}}>{likes && likes} likes</Text> */}
             </View>
             <View className='items-start justify-between mb-3 pb-3' style={{width: width * 0.94, borderBottomColor: '#282828', borderBottomWidth: 1}}>
                 <View className='flex-row items-center justify-between' style={{width: width * 0.94}}>
@@ -34,13 +33,9 @@ const PostBlockComment = ({title, likes, username, subComments}) => {
             {threadToggle ? (
                 <View  className='items-end mb-5' style={{width: width * 0.94, borderBottomColor: '#323232', borderBottomWidth: 2}}>
                     {subComments && subComments.map((item) => (
-                        
-                            <PostThreadComment key={item.id} commentText={item.commentText} likes={item.likes}/>
-                        
+                       <PostThreadComment key={item.id} commentText={item.commentText} likes={item.likes}/>
                     ))}
-                    </View>
-                    
-                
+                    </View>            
             ) : null }
         </>
     )

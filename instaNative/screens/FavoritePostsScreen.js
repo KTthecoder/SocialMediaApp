@@ -1,13 +1,8 @@
-import { View, Text, TouchableOpacity, SafeAreaView, Dimensions, ScrollView, Image, ActivityIndicator } from 'react-native'
+import { View, Text, TouchableOpacity, SafeAreaView, Dimensions, ScrollView, ActivityIndicator } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import NotificationBlock from '../components/NotificationBlock';
 import PostBlock from '../components/PostBlock';
-import { MaterialIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
-import PostBlockCommentShort from '../components/PostBlockCommentShort';
 import PostBlock1 from '../components/PostBlock1';
 import useFetchGet from '../hooks/useFetchGet';
 

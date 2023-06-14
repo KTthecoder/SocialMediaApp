@@ -1,28 +1,23 @@
-import { View, Text, SafeAreaView, Dimensions, Image, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native'
-import React, { useContext, useEffect, useState } from 'react'
+import { View, Text, SafeAreaView, Dimensions, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native'
+import React, {  useState } from 'react'
 import ProfileImg from '../components/ProfileImg'
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Fontisto } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { AuthContext } from '../contexts/AuthContext';
 import useFetchGet from '../hooks/useFetchGet'
 import CachedImage from 'react-native-expo-cached-image';
 
 const ProfileScreen = () => {
   const { width } = Dimensions.get('screen')
-
   const [screenToggle, setScreenToggle] = useState(true)
-
   const navigation = useNavigation()
-
   const { data, isLoading } = useFetchGet('http://192.168.1.34:8000/api/profile')
 
   if (isLoading){
     return (
       <View className='h-screen justify-center items-center w-screen bg-[#141414]'>
-          <ActivityIndicator size='large' />
+        <ActivityIndicator size='large' />
       </View>
     )
   }
@@ -60,8 +55,7 @@ const ProfileScreen = () => {
               <Text className='text-white text-sm text-center' style={{fontFamily: 'Montserrat-Regular'}}>Edit Profile</Text>
             </TouchableOpacity>        
           </View>
-
-          {/* <Text className='text-white text-xl mt-8 mb-5' style={{fontFamily: 'Montserrat-SemiBold', zIndex: 1, width: '90%'}}>Your Posts</Text> */}
+          
           <View className='flex-row justify-around mt-8 mb-5'>
             <TouchableOpacity onPress={() => setScreenToggle(true)} className='justify-center items-center pb-3' style={screenToggle ? {width: '50%', borderBottomWidth: 2, borderColor: 'red'} : {width: '50%', borderBottomWidth: 2, borderColor: '#383838'}}>
               <Ionicons name="grid-outline" size={26} color="white" />

@@ -1,8 +1,7 @@
-import { View, Text, TouchableOpacity, SafeAreaView, Dimensions, Image, ActivityIndicator, FlatList } from 'react-native'
+import { View, Text, TouchableOpacity, SafeAreaView, Dimensions, ActivityIndicator } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import NotificationBlock from '../components/NotificationBlock';
 import PostBlock from '../components/PostBlock';
 import PostBlock1 from '../components/PostBlock1';
 import useFetchGet from '../hooks/useFetchGet';
@@ -11,9 +10,7 @@ import { ScrollView } from 'react-native-virtualized-view'
 const PostsByCategory = () => {
     const { width } = Dimensions.get('screen')
     const navigation = useNavigation()
-
     const route = useRoute()
-
     const { data, isLoading, change, setChange } = useFetchGet(`http://192.168.1.34:8000/api/category/${route.params.slug}`)
 
     if (isLoading){

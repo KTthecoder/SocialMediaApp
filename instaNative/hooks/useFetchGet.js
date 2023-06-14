@@ -1,9 +1,8 @@
-import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import * as SecureStore from "expo-secure-store"
 import { useNavigation } from '@react-navigation/native'
 
-const useFetchGet = (url, another) => {
+const useFetchGet = (url) => {
     const [data, setData] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const [token, setToken] = useState()
@@ -23,19 +22,14 @@ const useFetchGet = (url, another) => {
             let data = await response.json()
             setData(data)
             setIsLoading(false)
-            // console.log(data)
         })
     }
 
     useEffect(() => {
-        // if(another == true){
+        getData()
+        navigation.addListener('focus', () => {
             getData()
-        // }
-        // else{
-            navigation.addListener('focus', () => {
-                getData()
-            });
-        // }
+        });
     }, [change])
     
   return {data, isLoading, setChange, change}

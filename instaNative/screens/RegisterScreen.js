@@ -44,7 +44,6 @@ const RegisterScreen = () => {
         .catch((err) => alert(err))
     }
 
-
     return (
         <KeyboardAvoidWrapper>
             <SafeAreaView className='flex-1 justify-center items-center bg-[#191b1f]'>

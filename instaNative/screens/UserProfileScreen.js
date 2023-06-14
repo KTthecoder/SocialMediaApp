@@ -1,5 +1,5 @@
-import { View, Text, SafeAreaView, Dimensions, Image, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, SafeAreaView, Dimensions, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native'
+import React from 'react'
 import ProfileImg from '../components/ProfileImg'
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -52,15 +52,10 @@ const UserProfileScreen = () => {
                         </View>
                     </View>
                     <View className='justify-start mt-5'>
-                        {/* <Text className='text-white text-sm mb-7' style={{fontFamily: 'Montserrat-Regular', lineHeight: 25, width: width * 0.94}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pharetra gravida risus ut laoreet.</Text> */}
                         <TouchableOpacity className='bg-blue-500 justify-center items-center rounded-xl' style={{width: 120, height: 45}}>
                             <Text className='text-white text-sm text-center' style={{fontFamily: 'Montserrat-Medium'}}>Follow</Text>
                         </TouchableOpacity>    
-                        {/* <TouchableOpacity className='bg-red-500 justify-center items-center rounded-xl' style={{width: 120, height: 45}}>
-                            <Text className='text-white text-sm text-center' style={{fontFamily: 'Montserrat-Medium'}}>Unfollow</Text>
-                        </TouchableOpacity>        */}
                     </View>
-                    {/* <Text className='text-white text-xl mt-8 mb-5' style={{fontFamily: 'Montserrat-SemiBold', zIndex: 1, width: '90%'}}>Your Posts</Text> */}
                     <View className='flex-row justify-between flex-wrap mt-6' style={{width: width * 0.94}}>
                         {data && data['userPosts'].map((item) => (
                             <ProfileImg key={item.id} postId={item.id} image={item.image.image}/>

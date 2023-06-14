@@ -4,14 +4,10 @@ import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import PostBlockCommentShort from './PostBlockCommentShort';
-import { Fontisto } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-// import CachedImage from 'react-native-expo-cached-image';
 import { AuthContext } from '../contexts/AuthContext';
 import * as SecureStore from "expo-secure-store"
 import { FontAwesome } from '@expo/vector-icons';
-import ExpoFastImage from 'expo-fast-image';
-import CachedImage from './CachedImage';
 
 const PostBlock = ({username, biggestComment, location, likes, commentsCount, description, images, profileImage, postId, setChange, change, liked}) => {
     const { width } = Dimensions.get('screen')
@@ -82,13 +78,6 @@ const PostBlock = ({username, biggestComment, location, likes, commentsCount, de
             <View className='flex-row items-center justify-between pt-2 pb-3' style={{width: width * 0.94}}>
                 <TouchableOpacity onPress={() => navigation.navigate('UserProfileScreen', {username: username})} className='justify-start items-start flex-row'>
                     <Image source={{cache: "force-cache", uri: `http://192.168.1.34:8000${profileImage}`}} className='bg-red-300 rounded-full' style={{width: 40, height: 40, resizeMode: 'cover'}}/>
-                    {/* {profileImage && <ExpoFastImage uri={`http://192.168.1.34:8000${profileImage}`} cacheKey={profileImage} className='bg-red-300 rounded-full' style={{width: 40, height: 40}}/>} */}
-                    {/* <CachedImage 
-                        source={{ uri: `http://192.168.1.34:8000${profileImage}` }}
-                        cacheKey={`${profileImage.toString()}`}
-                        className='bg-red-300 rounded-full' 
-                        style={{width: 40, height: 40}}
-                    /> */}
                     <View className='ml-2'>
                         <Text className='text-white text-sm' style={{fontFamily: 'Montserrat-Medium'}}>{username}</Text>
                         <Text className='text-gray-300 text-xs' style={{fontFamily: 'Montserrat-Regular'}}>{location}</Text>
@@ -96,23 +85,12 @@ const PostBlock = ({username, biggestComment, location, likes, commentsCount, de
                 </TouchableOpacity>
                 <TouchableOpacity className='py-3 pl-3'>
                     <MaterialIcons name="save-alt" size={25} color="white" />
-                    {/* <Fontisto name="save" size={20} color="white" /> */}
                 </TouchableOpacity>
             </View>
             {images && 
                 <Image source={{cache: "force-cache", uri: `http://192.168.1.34:8000${images}`}} style={{width: width, height: width * 0.94, resizeMode: 'cover'}} />}
-                {/* {images && <ExpoFastImage uri={`http://192.168.1.34:8000${images}`} cacheKey={images} style={{width: width, height: width * 0.94}}/>} */}
-                {/* <CachedImage 
-                    source={{ uri: `http://192.168.1.34:8000${images}` }}
-                    cacheKey={`${images.toString()}`}
-                    style={{width: width, height: width * 0.94}}
-                /> */}
             <View className='items-start pt-5 justify-between flex-row pb-3' style={{width: width * 0.94, borderBottomWidth: 1, borderColor: '#323232'}}>
                 <View className='flex-row'>
-                    {/* <TouchableOpacity onPress={() => LikePost()} className='flex-row items-center justify-center'>
-                        <AntDesign name="hearto" size={18} color="white" /> 
-                        <Text className='text-white text-sm pl-2' style={{fontFamily: 'Montserrat-SemiBold'}}>{likes}</Text>
-                    </TouchableOpacity> */}
                     {liked && liked === 'No' ? 
                         <TouchableOpacity onPress={() => LikePost()} className='flex-row items-center justify-center'>
                             <AntDesign name="hearto" size={18} color="white" /> 
@@ -133,11 +111,9 @@ const PostBlock = ({username, biggestComment, location, likes, commentsCount, de
             </View>
             <View className='items-start justify-start mt-3 flex-row' style={{width: width * 0.94}}>     
                 <Text className='text-white text-sm' style={{fontFamily: 'Montserrat-Regular'}}>
-                {/* <Text className='text-white text-sm' style={{fontFamily: 'Montserrat-SemiBold'}}>{username} </Text> */}
                 {description}</Text>
             </View>
             {commentsCount != 0 ? 
-                
                 <>
                 <TouchableOpacity onPress={() => navigation.navigate('PostCommentsScreen', {autofocus: false, postId: postId})} className='items-start pt-4 justify-between pb-3' style={{width: width * 0.94}}>
                     <Text className='text-gray-400 text-sm' style={{fontFamily: 'Montserrat-Medium'}}>Show {commentsCount} Comments</Text>
@@ -149,12 +125,6 @@ const PostBlock = ({username, biggestComment, location, likes, commentsCount, de
             : 
             null
             }
-            {/* <TouchableOpacity onPress={() => navigation.navigate('PostCommentsScreen', {autofocus: false, postId: postId})} className='items-start pt-4 justify-between pb-3' style={{width: width * 0.94}}>
-                <Text className='text-gray-400 text-sm' style={{fontFamily: 'Montserrat-Medium'}}>Show {commentsCount} Comments</Text>
-            </TouchableOpacity>
-            <View className='items-start justify-between' style={{width: width * 0.94}}>
-                <PostBlockCommentShort biggestComment={biggestComment} username={username}/>
-            </View> */}
         </View>
     )
 }

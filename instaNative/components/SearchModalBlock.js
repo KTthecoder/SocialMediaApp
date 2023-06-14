@@ -1,4 +1,4 @@
-import { View, Text, Image, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import CachedImage from 'react-native-expo-cached-image'
@@ -13,7 +13,6 @@ const SearchModalBlock = ({followers, username, image}) => {
             setTimeout(() => {
                 navigation.navigate('UserProfileScreen', {username: username})
             }, 10)
-            // navigation.navigate('UserProfileScreen')
         }} className='mb-4 flex-row pb-4 items-center' style={{width: width * 0.94, borderBottomColor: '#383838', borderBottomWidth: 1}}>
             <CachedImage source={{cache: "force-cache", uri: `http://192.168.1.34:8000${image}`}}className='rounded-full mr-4' style={{width: 45, height: 45}} />
             <View style={{width: '80%'}}>

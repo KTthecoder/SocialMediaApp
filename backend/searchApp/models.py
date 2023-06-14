@@ -4,7 +4,6 @@ from django_resized import ResizedImageField
 
 # Create your models here.
 class CategoriesModel(models.Model):
-    # image = models.ImageField(upload_to='categoryImage/')
     image = ResizedImageField(force_format="WEBP", quality=80, upload_to="categoryImage/")
     title = models.CharField(max_length=50)
     slug = models.SlugField(unique=True)

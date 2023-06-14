@@ -14,14 +14,10 @@ from .models import *
 def ProfileScreen(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
-            # try:
             profile = UserProfile.objects.get(user = request.user)
             profileSerializer = ProfileSerializer(profile, context={'user': request.user})
 
             return Response(profileSerializer.data, status=status.HTTP_200_OK)
-            # except:
-            #     response = {'Error' : 'User Does Not Exists'}
-            #     return Response(response, status=status.HTTP_200_OK)
         else:
             response = {'Error': 'User Unauthorized'}
             return Response(response, status=status.HTTP_401_UNAUTHORIZED)
@@ -105,20 +101,11 @@ def FavoriteUserPosts(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
             try:
-                # posts = FavoritePostsModel.objects.filter(user = request.user)
-                # postsSerializer = FavoritePostListSerializer(posts, many = True)
-
-                # return Response(postsSerializer.data, status=status.HTTP_200_OK)
-
-
                 firstPost = FavoritePostsModel.objects.filter(user = request.user).first()
-
                 allPosts = FavoritePostsModel.objects.filter(user = request.user)[1:]
-
                 firstPostSerializer = FavoritePostListSerializer(firstPost, context={'user': request.user})
                 allPostSerializer = FavoritePostListSerializer(allPosts, many = True, context={'user': request.user})
                 return Response([firstPostSerializer.data, allPostSerializer.data], status=status.HTTP_200_OK)
-
             except:
                 response = {'Error' : 'User Does Not Exists'}
                 return Response(response, status=status.HTTP_200_OK)

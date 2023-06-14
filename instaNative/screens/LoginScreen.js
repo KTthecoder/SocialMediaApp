@@ -29,10 +29,7 @@ const LoginScreen = () => {
     return (
         <KeyboardAvoidWrapper>
             <SafeAreaView className='flex-1 justify-center items-center bg-[#191b1f]'>
-                <View className='mb-8'>
-                    {/* <BoltIcon color={'#0082F6'} size={100}/> */}
-                    {/* <Image source={require('../assets/images/login.png')} style={{width: width * 0.57, height: width * 0.57}} /> */}
-                </View>
+                <View className='mb-8'></View>
                 <View className='justify-start items-start w-screen pl-5 pr-5 mb-3'>
                     <Text className='text-2xl font-semibold text-white' style={{fontFamily: 'Montserrat-SemiBold'}}>Login</Text>
                 </View>

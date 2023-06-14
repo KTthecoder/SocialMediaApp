@@ -1,4 +1,4 @@
-import { View, Text, Dimensions, Image } from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
 import React from 'react'
 import CachedImage from 'react-native-expo-cached-image'
 

@@ -4,7 +4,6 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .models import *
 from .serializers import *
-from django.db.models import Count
 from profileApp.models import *
 from profileApp.serializers import *
 
@@ -135,15 +134,11 @@ def DisLikePost(request, postId):
         if request.user.is_authenticated:
             post = FavoritePostsModel.objects.get(user = request.user, post = postId)
             postData = PostModel.objects.get(id = request.data['post'])
-            # if post.is_valid():
             postData.likes = postData.likes - 1
             post.delete()
             postData.save()
             data = {'Success' : 'Post Liked Added Succesfully'}
             return Response(data, status=status.HTTP_200_OK)
-            # else:
-            #     data = {'Error' : 'Post Not Liked, Bad Data'}
-            #     return Response(data, status=status.HTTP_200_OK)
         else:
             response = {'Error': 'User Unauthorized'}
             return Response(response, status=status.HTTP_401_UNAUTHORIZED)

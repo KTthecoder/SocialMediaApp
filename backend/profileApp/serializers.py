@@ -93,9 +93,6 @@ class FavoritePostListSerializer(serializers.ModelSerializer):
         return userSerializer.data
 
     def get_posts(self, post):
-        # user = self.context.get("user") 
-        # print(user)
-        # posts = PostModel.objects.get(id = post.post.id)
         posts = PostModel.objects.get(id = post.post.id)
         postsSerializer = PostSerializer(posts)
         return postsSerializer.data

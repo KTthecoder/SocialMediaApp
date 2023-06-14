@@ -1,15 +1,7 @@
-import { View, Text, Button, TouchableOpacity, FlatList, SafeAreaView, ScrollView, Dimensions, ActivityIndicator, Image } from 'react-native'
-import React, { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../contexts/AuthContext';
+import { View, Text, TouchableOpacity, SafeAreaView, ScrollView, Dimensions } from 'react-native'
+import React from 'react'
 import { Ionicons } from '@expo/vector-icons'; 
-import { AntDesign } from '@expo/vector-icons'; 
-import { Feather } from '@expo/vector-icons';
-import HomeStoryBlock from '../components/HomeStoryBlock';
-import PostBlock from '../components/PostBlock';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import PostBlockCommentShort from '../components/PostBlockCommentShort';
 import PostBlock1 from '../components/PostBlock1';
 import useFetchGet from '../hooks/useFetchGet';
 
@@ -31,7 +23,6 @@ const PostDetailsScreen = () => {
                 </View>
                 <View>
                     <Text className='text-white ml-1' style={{fontFamily: 'Montserrat-SemiBold', fontSize: 19}}>Posts</Text>
-                    {/* <Text className='text-white ml-1 text-base' style={{fontFamily: 'Montserrat-Regular'}}>ksawery.tkaczyk</Text> */}
                 </View>
             </View>
             <ScrollView className='flex-1 w-screen' contentContainerStyle={{alignItems: 'center', paddingBottom: 30}} showsVerticalScrollIndicator={false}>

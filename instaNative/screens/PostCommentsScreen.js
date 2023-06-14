@@ -1,6 +1,5 @@
-import { View, Text, Button, TouchableOpacity, FlatList, SafeAreaView, ScrollView, Dimensions, ActivityIndicator, Image, TextInput, KeyboardAvoidingView } from 'react-native'
-import React, { useContext, useEffect, useState } from 'react'
-import PostBlockCommentShort from '../components/PostBlockCommentShort'
+import { View, Text, TouchableOpacity, SafeAreaView, ScrollView, Dimensions, ActivityIndicator, TextInput } from 'react-native'
+import React, { useContext, useState } from 'react'
 import PostBlockComment from '../components/PostBlockComment'
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -67,9 +66,7 @@ const PostCommentsScreen = () => {
                     <TextInput placeholder='Write Comment...' autoFocus={route.params.autofocus} value={comment} onChangeText={(value) => setComment(value)} className='rounded-r-xl text-white flex-row flex-wrap pl-4' style={{width: '100%', height: 45}} placeholderTextColor={'gray'} />
                 </View>
                 <TouchableOpacity className='bg-blue-500 justify-center items-center rounded-xl' onPress={() => AddComment()} style={{width: 45, height: 45, justifyContent: 'center', alignSelf: 'center', alignItems: 'center', alignContent: 'center'}}>
-                    {/* <Text className='text-white text-sm' style={{fontFamily: 'Montserrat-SemiBold'}}>Search</Text> */}
                     <AntDesign name="search1" size={24} color="white" />
-                    {/* <Ionicons name="ios-add-outline" size={30} color="white" /> */}
                 </TouchableOpacity>
             </View> 
             <ScrollView className='flex-1 w-screen p-1' contentContainerStyle={{alignItems: 'center', paddingBottom: 30}} showsVerticalScrollIndicator={false}>     

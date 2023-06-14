@@ -4,7 +4,6 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .models import *
 from .serializers import *
-from django.db.models import Count
 from homeApp.models import *
 from homeApp.serializers import *
 
@@ -93,8 +92,6 @@ def FoundUsers(request, search):
         if request.user.is_authenticated:
             try:
                 userModel = User.objects.filter(username__contains = search)[:3]
-                # users = UserProfile.objects.filter(user = userModel)
-                # usersSerializer = UserProfileSerializer(userModel, many = True)
                 usersSerializer = UserFoundSerializer(userModel, many = True, context={'user': request.user})
                 return Response(usersSerializer.data, status=status.HTTP_200_OK)
             except:
@@ -114,8 +111,6 @@ def FoundAllUsers(request, search):
         if request.user.is_authenticated:
             try:
                 userModel = User.objects.filter(username__contains = search)
-                # users = UserProfile.objects.filter(user = userModel)
-                # usersSerializer = UserProfileSerializer(userModel, many = True)
                 usersSerializer = UserFoundSerializer(userModel, many = True, context={'user': request.user})
                 return Response(usersSerializer.data, status=status.HTTP_200_OK)
             except:

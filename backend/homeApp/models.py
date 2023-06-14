@@ -17,7 +17,6 @@ class PostModel(models.Model):
         return self.description
 
 class PostImagesModel(models.Model):
-    # image = models.ImageField(upload_to='postImages/')
     image = ResizedImageField(force_format="WEBP", quality=80, upload_to="postImages/")
     post = models.ForeignKey(PostModel, related_name='images', on_delete=models.CASCADE)
 

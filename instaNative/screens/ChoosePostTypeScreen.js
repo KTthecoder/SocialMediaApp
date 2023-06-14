@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, TextInput, TouchableOpacity, ActivityIndicator, Image, Dimensions, Button } from 'react-native'
+import { View, Text, SafeAreaView, TextInput, TouchableOpacity, ActivityIndicator, Dimensions } from 'react-native'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Formik } from 'formik'
 import KeyboardAvoidWrapper from '../components/KeyboardAvoidWrapper'
@@ -12,7 +12,6 @@ import * as FileSystem from 'expo-file-system';
 const ChoosePostTypeScreen = () => {
     const ref1 = useRef()
     const ref2 = useRef()
-    const { loginUser } = useContext(AuthContext)
     const navigation = useNavigation()
 
     const [hasGalleryPermission, setHasGalleryPermission] = useState(null)
@@ -57,7 +56,7 @@ const ChoosePostTypeScreen = () => {
         return <ActivityIndicator size='large' />
     }
 
-    const { width, height } = Dimensions.get('screen')
+    const { width } = Dimensions.get('screen')
 
     return (
         <KeyboardAvoidWrapper>

@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import * as SecureStore from "expo-secure-store"
 import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
 
 export const AuthContext = createContext()
 
@@ -50,7 +51,7 @@ const AuthProvider = (props) => {
         setUser(null)
         await SecureStore.deleteItemAsync('refreshToken')
         await SecureStore.deleteItemAsync('accessToken')
-        console.log("User Logged Out Correctly")
+        Alert.alert('User Logged Out', 'Reload App')
     }
 
     async function updateToken() {
@@ -73,7 +74,6 @@ const AuthProvider = (props) => {
                 GetToken()
             }
             else{
-                // logoutUser()
                 console.log(data)
             }
 
@@ -81,44 +81,69 @@ const AuthProvider = (props) => {
                 setLoading(false)
             }
         })
-        
-        // let data = await response.json()
-
-        // if(response.status == 200){
-        //     setAccessToken(data['access'])
-        //     setUser(jwt_decode(data['access']))
-        //     console.log('User is stil logged in')
-        //     SecureStore.setItemAsync('accessToken', data['access'])
-        // }
-        // else{
-        //     logoutUser()
-        // }
-
-        // if(loading){
-        //     setLoading(false)
-        // }
     }
 
     async function GetToken() {
+        setIsLoading(true)
         await SecureStore.getItemAsync("refreshToken").then((token) => {
-            try{
-                setRefreshToken(token)
-                setIsLoading(false)
-            }
-            catch{
-                console.log('Problem')
-            }
+            fetch('http://192.168.1.34:8000/api/token/verify/', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'token' : token
+                })
+            })
+            .then((data) => data.json())
+            .then((data) => {
+                    if(data['detail']){
+                        logoutUser()
+                    }
+                    else{
+                        try{
+                            setRefreshToken(token)
+                            setIsLoading(false)
+                        }
+                        catch{
+                            console.log('Problem')
+                        }
+                    }
+                }
+            )
+            .catch((err) => console.log(err))
+            
         })
 
         await SecureStore.getItemAsync("accessToken").then((token) => {
-            try{
-                setAccessToken(token)
-                setUser(jwt_decode(token))
-                setIsLoading(false)
-            }
-            catch{
-                console.log('Problem')
-            }
+            fetch('http://192.168.1.34:8000/api/token/verify/', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'token' : token
+                })
+            })
+            .then((data) => data.json())
+            .then((data) => {
+                    if(data['detail']){
+                        logoutUser()
+                    }
+                    else{
+                        try{
+                            setAccessToken(token)
+                            setUser(jwt_decode(token))
+                            setIsLoading(false)
+                        }
+                        catch{
+                            console.log('Problem')
+                        }
+                    }
+                }
+            )
+            .catch((err) => console.log(err))
+           
         })
     }
 
@@ -127,7 +152,7 @@ const AuthProvider = (props) => {
             updateToken()
         }
 
-        let time = 200000
+        let time = 1000 * 60 * 3595
         let interval = setInterval(() => {
             if(accessToken){
                 updateToken()

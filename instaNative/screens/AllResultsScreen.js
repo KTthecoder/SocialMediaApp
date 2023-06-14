@@ -1,7 +1,5 @@
-import { View, Text, ScrollView, SafeAreaView, TextInput, Dimensions, Image, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, SafeAreaView, Dimensions, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { AntDesign } from '@expo/vector-icons';
-import SearchCategoryBlock from '../components/SearchCategoryBlock';
 import SearchModalBlock1 from '../components/SearchModalBlock1';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -12,7 +10,7 @@ const AllResultsScreen = () => {
     const navigation = useNavigation()
     const route = useRoute()
 
-    const { data, isLoading } = useFetchGet(`http://192.168.1.34:8000/api/search/user/${route.params.search}/all`)
+    const { data } = useFetchGet(`http://192.168.1.34:8000/api/search/user/${route.params.search}/all`)
 
     return (
         <SafeAreaView className='w-screen justify-center items-center bg-[#141414] flex-1'>  

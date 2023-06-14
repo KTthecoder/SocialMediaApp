@@ -1,15 +1,12 @@
-import { View, Text, Dimensions, TouchableOpacity, SafeAreaView, TextInput } from 'react-native'
+import { View, Text, Dimensions, TouchableOpacity, SafeAreaView } from 'react-native'
 import React, { useContext } from 'react'
-import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons'; 
 import { AuthContext } from '../contexts/AuthContext';
 
 const EditProfileScreen = () => {
     const { width, height } = Dimensions.get('screen')
-
     const navigation = useNavigation()
-
     const { logoutUser } = useContext(AuthContext)
 
     return (

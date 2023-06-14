@@ -17,10 +17,8 @@ const CachedImage = props => {
   useEffect(() => {
     const loadImage = async ({ fileURI }) => {
       try {
-        // Use the cached image if it exists
         const metadata = await FileSystem.getInfoAsync(fileURI)
         if (!metadata.exists) {
-          // download to cache
           if (componentIsMounted.current) {
             setImgURI(null)
             await FileSystem.downloadAsync(
@@ -33,7 +31,7 @@ const CachedImage = props => {
           }
         }
       } catch (err) {
-        console.log() // eslint-disable-line no-console
+        console.log()
         setImgURI(uri)
       }
     }
@@ -43,11 +41,10 @@ const CachedImage = props => {
     return () => {
       componentIsMounted.current = false
     }
-  }, [])// eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Image
-    // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       source={{
         uri: imgURI,

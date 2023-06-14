@@ -1,5 +1,5 @@
-import { View, Text, ScrollView, SafeAreaView, TextInput, Dimensions, Image, TouchableOpacity } from 'react-native'
-import React, { useContext, useState } from 'react'
+import { View, Text, ScrollView, SafeAreaView, TextInput, Dimensions, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import SearchModalBlock from '../components/SearchModalBlock';
 import { useNavigation } from '@react-navigation/native';
@@ -7,9 +7,7 @@ import * as SecureStore from "expo-secure-store"
 
 const SearchModalScreen = () => {
     const { width } = Dimensions.get('screen')
-
     const navigation = useNavigation()
-
     const [data, setData] = useState('')
     const [search, setSearch] = useState('')
     const [isLoading, setIsLoading] = useState(true)
@@ -35,7 +33,6 @@ const SearchModalScreen = () => {
                                 let data = await response.json()
                                 setData(data)
                                 setIsLoading(false)
-                                // console.log(data)
                             })           
                         }   
                         if(value  === ''){
